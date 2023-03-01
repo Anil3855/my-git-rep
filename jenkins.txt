@@ -1,0 +1,109 @@
+Jenkins
+===============
+This is a tool used for implementing CI-CD 
+
+Stages in CI-CD
+===============================
+Stage 1 (Continuous Download)
+---------------------------------------
+Whenever developer upload some code into the git repository Jenkins will rececive
+a notification and it will download all that code. this 
+
+Stage 2 (Continuous Build)
+--------------------------------------------
+The code Downloaded in the previous stage had to converted into a setup file 
+commonly known as Artifacat. To create this artifact jenkins uses certain build
+tools like ANT,MAVEN, etc
+The artifact can be in the format of a .jar, .war, .ear file etc.
+This stage is called as Continuous Build
+
+Stage 3 (Continuous Deployment)
+-------------------------------------------------
+The Artifact created in the previous stage has to be deployed into the QAServer 
+where a team of testers can start accessing it.
+This QA Environment can be runing on some application server like Tomcat,Weblogic
+etc. 
+Jenkins deploys the artifact into these application servers and this is called 
+continuous Deployment.
+ 
+Stage 4 (continous Testing)
+-----------------------------------------------------------
+Testers Create automation test Scripts using tools like Selenium, UFT etc.
+Jenkins run these automation test scripts and checks if the application
+is working according to client requirment or not, If testing fails Jenkins
+will send automated emails notifications to the corresponding team members 
+and developers will fix the defects and upload the modified code into Git,
+Jenkins will again start from stage-1
+
+Stage 5 (Continous Delivery)
+----------------------------------------------------------------------
+Once the application is found to be defect free Jenkins will deploy it into
+the prod Servers where the end user or client can start accessing it This is called
+continuous Delivery.
+
+Here the first 4 stages represent CI (Continuous Integration)
+The late stage represents CD (Continuous Delivery)
+
+================================================================================
+Day-2 
+================================================================================
+Setup of Jenkins
+================================
+
+1. Create 3 AWS Ubuntu instances and name then Jenkinssever, QAserver, ProdServer
+
+2. Connect to Jenkinsserver using Gitbash
+
+3. Update the apt repositary
+   sudo apt-get update
+
+4. Install jdk
+   sudo apt-get install -y openjdk-11-jdk
+
+5. Install git and maven
+   sudo apt-get install -y git maven
+
+6. Downloaded jenkins.war
+   wget https://get.jenkins.io/war-stable/2.361.3/jenkins.war
+
+7. To start jenkins
+   java -jar jenkins.war
+
+8. To access jenkins open browser
+   public_ip_of_jenkinserver:8080
+
+9. Unlock jenkins by entering the password
+
+10. Click on Install suggested plugin
+
+11. Create admin user
+
+===================================================================================
+Setup of tomcat on QAserver and ProdServers
+======================================================
+1. connect to QAserver using Gitbash
+
+2. Update the apt repositary
+   sudo apt-get install -y tomcat9
+
+3. Install tomcat9
+   sudo apt-get install -y tomcat9
+
+4. Install tomcat9-admin
+   sudo apt-get install -y tomcat9-admin
+
+5. Edit the tomcat-users.xml file
+   cd/etc/tomcat9
+   Delete all the content from the file and add the below content
+
+   <tomcat-users>
+     <user username="intelliqit" password="intelliqit" roles="manager-script"/>
+  </tomcat-users>
+
+6. Restart tomcat
+   sudo service tomcat9 restart
+
+==================================================================================
+Day-3
+================================================================================
+   
