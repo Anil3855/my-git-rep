@@ -1,0 +1,6 @@
+send the file to stage area using this command git add . (total files single file
+use git add (file name)
+
+file sending back --->git rm --cached file name and git reset file name
+sending file to staging area to local repository -----> 
+git commit -m give some message

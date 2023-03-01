@@ -1,0 +1,23 @@
+jenkinsserver connect - cd downloads--->ssh----->yes---->exit--->logout
+Qasever connect- cd downloads--->ssh----->yes---->exit--->logout
+
+Jenkinsserver install (jdk,git,maven,jenkins)
+
+connect---->cd downloads---->ssh---->sudo apt-get update---->(jdk)
+sudo apt-get install -y openjdk-11-jdk----->check version java -version
+--->sudo apt-get install -y git maven----->git --version---->mvn --version
+jenkins install---->wget online jenkins address---->ls----->start java---->
+java -jar jenkins.war
+
+
+Qa server
+
+connet--->ssh--->sudo apt-get update---->sudo apt-get install -y tomcat-9
+
+--->sudo apt-get install -y tomcat9-admin---->cd/etc/tomcat9/---->ls---->
+sudo vim tomcat-user.xml
+
+---->press i --->insert data---->   <tomcat-users>
+        <user username"anilkumar" password="anilkumar" roles="manager-script"/>
+</tomcat-users>
+--->press esc-----> 

@@ -1,0 +1,249 @@
+Developer create code----> server Git ----> automatically download-----> set of files
+converted----->install testing severs ----> create programs -----> jenkins
+automatically exsicute -----> testing sucessfull finally delivery to client
+
+This Entire follow we call it has ci - cd 
+
+2006 jenkins is called as hadson
+
+why its serves as of now easy plugin and integrates any software conpatibility
+jenkins community also update every time
+This tool only for then 15 years use cotinues integration
+jenkins editions comes both 
+
+1. community edition ( free every one)
+2. Enterprise edition ( orgnisation its gives support to any issues)
+
+=========================================================================
+Installations 
+======================
+we are required to install some softweres 
+
+3 server we are creating use ubantu linux
+first serve---> we need install java because jenkins depends on java not there we
+can't run jenkins similerly we requires two other software GIT and Maven then install
+on jenkins
+
+2nd server---> install Tomcat9, Tomcat9 admin ( Tomcat menas Application sever)
+
+3rd server---> install Tomcat9, Tomcat9 admin ( Tomcat menas Application sever)
+
+create sever after how do connect the severs ..?
+linux server as a command prompt is call as a terminal every linux will have command
+prompt though where you to execute the commands thus commanly call as terminal.
+
+To that linux severs iam install another software GIT 
+
+Going to google type GIT download----> windows--->after download set of file
+to install click
+next and next----> GIT is install----> you get GIT bash
+
+GIT Bash is the command Prompt terget where we will be firing GIT commands.
+
+==========================================================================
+Use this GIT Bash to connect linux severs which are running on aws cloud  
+===========================================================================
+my personal computer is windows mechine where as we created 3 linuxs mechines on
+aws cloud now i want to connect those linux mechines how will connect this git 
+is working like a interface
+===============
+First senario
+===============
+first we do is -----> Go to Git bash and type-----> cd downloads (there is security
+key in the download )
+Then identify which sever you want connect..? 
+i want to connect jenkins server then highlight the jenkins sever click on 
+
+------> "connect" ----->SSH Client---->copy example ssh command and paste that ssh
+command in your GIT Bash------> enter (are you sure you wnat to continue connecting 
+we will give "yes")
+
+then command prompt change------> some ip address  ex:ubuntu@ip-172-31-35-155:~$
+then type exit-----> logout
+
+(EC2 Instance closed come to your window mechine.)
+=================
+One More senario
+==================
+now iam connect QA server repeat same steps to highlight QA server then click
+connect ----> ssh client----> copy ssh command example
+Then paste Git bash------>give confirmation-----> yes----> connection Established.
+then exit.
+
+==================================================================================
+jenkins server-1 ---->cd downloads---->jenkins connect -----> ssh command example---->paste Git
+bash---->enter
+then----> sudo apt-get update
+--------> sudo apt-get install -y openjdk-11-jdk  (java installization)
+--------> java -version  (check version)
+intall Maven----->command after ip address---->sudo apt-get install -y git maven
+enter press
+lets check version------> git --version
+then check version maven------>mvn --version
+next install jenkins:
+-----> Go to Google type jenkins download
+select stable release
+-----> i want its download the ubuntu sever which run on the aws cloud that ubuntu
+sever doen't have graphical interface we can't open borrower do all this things
+----->right click and copy generic java Package link address
+-----> wget paste link here (wget is download command)
+lets check its download or not use command ls (list of files)
+jenkins.war (downloaded)
+how to start jenkins command----> java -jar jenkins.war (enter)
+
+now check jenkins server in browser ----> every server have public ip and private
+ip in network section-----> Give copied public ip in the browser :8080 is the port
+number
+unlock jenkins copy the password in git bash and paste here and continue
+its showing two options select install suggested plugins.
+next create first admin user,password,full name,email adress final give sava and
+continue
+jenkins is ready to use.
+
+(here its downloaded: jdk Git maven jenkins)
+
+====================================================================================
+install Tomcat9 QAServer-2 cd downlods----->highlight and connect QAServer---->
+ssh command ex copy-----> paste GIT Bash press enter------> update apt repository
+use command ---->sudo apt-get update----> then install Tomcat9 use command ----->
+sudo apt-get install -y tomcat9
+Then install tomcat9 admin------> Command sudo apt-get install -y tomcat9-admin
+done once tomcat installed if you go into /etc/tomcat9/ folders you people will find 
+there file tomcat user as tomcat user.xml lets show it
+
+cd/etc/tomcat9/------>ls----->First you can modify-------> sudo vim tomcat-user.xml
+                                                (vim is edit command in linux)
+
+what ever is content is there you remove entire content and give replacement the
+content press (esc or i )
+
+<tomcat-user>
+            <user username="anilkumar" password="anilkumar" roles="manager-script"/>
+</tomcat-user>
+
+press shift+:wq
+
+once it done you can restart tomcat service command-----> 
+                                           sudo service tomcat9 restart (press enter)
+
+tomcat also web application like similer to jenkins 
+
+tomcat9 sucessfully installed QA SERVER now connect ----> network-----> take public 
+ip adress and paste to browser and give with prot number :8080
+
+exit QAServer
+==================================================================================
+
+Prodserver-3 cd downloads----->connect prodserver----->ssh ex------>paste ---->
+git bash----->update apt----->sudo apt-get update----->install tomcat9------>
+sudo apt-get install -y tomcat9------->install tomcat9 admin----> sudo apt-get
+install -y tomcat-admin------>cd/etc/tomcat9/----->ls----->sudo vim tomcat-user.xml
+remove content-----> and replace new content
+
+<tomcat-user>
+            <user username="anilkumar" password="anilkumar" roles="manager-script"/>
+</tomcat-user>
+
+press shift+:wq
+sudo service tomcat9 restart
+
+check in brower it work or not take public id and brower with :8080
+
+==================================================================================
+
+cd downloads--->ssh----->yes----->ls----->jenkins.war----->java -jar jenkins.war 
+
+jenkins sever is on the running condition
+
+highlight the jenkins sever and networking section take public ip and paste in
+brower with :8080 open dish board of jenkins
+
+Developer after creating code and pushing that code in git repository they will
+provide url where our work start
+
+jenkins teminology this stages are called as jobs
+
+creating jobs:
+
+jenkins ------> new items------>enter an item name project ex:Develpment------>select ---->
+freestyle projects------>click on ok
+
+---->source code Management----->select git----->repository URL paste here
+now click on apply and save----->dashboard and the firtst stage of ci cd is done
+
+after that creating job right side one build icon is there click on that icon 
+your job is executed. (refresh)
+
+display in sucess status if click on the number on left hand pannel you will find 
+console output. console output is the location where the logs of jenkins generated
+
+(in interview asking where do the logs of jenkins answer:console output)
+
+click on console output----->what happen here its cloning the git repository
+finally its showing msg sucess which means the first stage of ci cd is sucessfully
+where its download Building in workspace 
+
+lets connect jenkins server----> ssh-----> cd downloads---->cd building workspace
+path paste it here after doing that give ls shows dirctories or files
+
+first stage continues download is done
+
+maven is build tool of java maven there are 7 stages of life cycle though which
+performaning this activity at this point of time no need all that the 5th stage of 
+maven is called as package this is stage where maven converts your code into a 
+artifact.
+
+lets go back into jenkins ---->dash board---->click on development downword arrow
+----->configure -----> arlear move same page ----->build steps----->add build steps
+---->invoke top level maven targets ------>and package----->click on apply and save
+click on build icon
+
+click on console output----->what happen here its cloning the git repository
+finally its showing msg sucess which means the first stage of ci cd is sucessfully
+where its download Building in workspace
+
+cd downloads---->cd building workspace
+path paste it here after doing that give ls shows dirctories or files
+
+now completed 2nd stage creating artifact is done
+=================================
+3rd stage continues deployment
+===============================
+Team of Devlopers are some code that code convert into the war files (aritifact)that 
+war file deploy into a Tomcat application server then we can browse any application 
+in internet.
+
+Testing purpose we required one plugin name Deploy to container
+how do you install this plugin..?
+
+---->Go to jenkins dashborad----->click on Manage jenkins----->Manage plugins--->
+----->available plugins---->now search to deploy to container-----> highlight the
+plugin---->click on install without restart---->plugin install 
+
+go back to dash board
+ 
+now go to post build actions ----->add post-build action---->select---->deploy war
+/ear to a container when click on it **/*.war----->context path testapp---> click
+on add container---->tomcat9 -----> credentials add jenkins--->now you user name
+and password after that click on add---->tomcat url give http://private ip with :8080
+
+back to dash board if i run 3rd time click build icon
+
+Notify : downloading the code building the code and deploy the code into the testing
+server tomcat also treegred.
+
+as of we discuss what is the content path you given public ip with testapp
+application should be run on browser.
+
+=================================================================================
+4th continues Testing
+================================================================================
+go back to dash board-----> new item---->Enter name Testing---->freestyle project
+
+(Tesing team creating some selinum programs they uploading to git. after upload code
+testers will given an url this code we uploading)
+
+source code Managment----->git ---->copy and past url ----> save this job
+
+
+
